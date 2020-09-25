@@ -23,7 +23,7 @@ const ManageBlog = () => {
 
   const getArticleBySlug = async (slug) => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/post/${slug}`);
+      const res = await axios.get(`https://travellers-blog.herokuapp.com/api/post/${slug}`);
       setArticle(res.data);
       setId(res.data._id);
     } catch (err) {
@@ -43,7 +43,7 @@ const ManageBlog = () => {
       if (editing) {
         try {
           axios.defaults.headers.common["Authorization"] = sessionStorage.token;
-          await axios.put(`http://localhost:4000/api/update/${id}`, article);
+          await axios.put(`https://travellers-blog.herokuapp.com/api/update/${id}`, article);
           history.push(`/article/${slug}`);
         } catch (err) {
           console.log({ error: err });
@@ -51,7 +51,7 @@ const ManageBlog = () => {
       } else {
         try {
           axios.defaults.headers.common["Authorization"] = sessionStorage.token;
-          await axios.post("http://localhost:4000/api/new/post", article);
+          await axios.post("https://travellers-blog.herokuapp.com/api/new/post", article);
           history.push("/");
         } catch (err) {
           console.log({ error: err });
